@@ -125,7 +125,8 @@ noncomputable def New.cosetMeasure (i : H →* G) : Measure G :=
   orbitMeasure ν μ
 
 /-- For a closed embedding, the coset measure is s-finite and unfolds to Haar measure. -/
-private lemma New.cosetMeasure_unfold [ν.IsMulRightInvariant] {i : H →* G} (hi : IsClosedEmbedding i) :
+private lemma New.cosetMeasure_unfold [ν.IsMulRightInvariant]
+    {i : H →* G} (hi : IsClosedEmbedding i) :
     SFinite (cosetMeasure μ ν i) ∧ MeasurePreserving (fun p : G × H ↦ i p.2 * p.1)
       ((cosetMeasure μ ν i).prod ν) μ := by
   let : MulAction H G := compHom G i
