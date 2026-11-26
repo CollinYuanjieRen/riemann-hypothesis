@@ -78,7 +78,7 @@ lemma exists_smul_eq_zero_of_mem_selmerModule (ρ : Gal(Ω/E) → Matrix n n O) 
     ∃ a : O, a ≠ 0 ∧ a • z = 0 := by
   obtain ⟨z, hz⟩ := z
   obtain ⟨-, -, -, h_const⟩ := mem_selmerModule_iff.1 hz
-  let := h_const.range_finite.fintype
+  have := h_const.range_finite.to_subtype
   obtain ⟨a, ha, h⟩ := exists_common_denominator (fun p : Set.range z × n ↦ p.1.val p.2)
   exact ⟨a, ha, Subtype.ext (funext₂ fun g i ↦ h (⟨z g, g, rfl⟩, i))⟩
 

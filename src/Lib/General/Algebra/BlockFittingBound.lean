@@ -115,7 +115,8 @@ lemma exists_divQuot_eq {a : O} (ha : a ≠ 0) {y : DivisibleQuot O} (hy : a •
 /-- A finite family in the fraction field modulo the ring has a common nonzero denominator. -/
 lemma exists_common_denominator {ι : Type*} [Finite ι] (x : ι → DivisibleQuot O) :
     ∃ a : O, a ≠ 0 ∧ ∀ i, a • x i = 0 := by
-  choose f hf using fun i ↦ Submodule.Quotient.mk_surjective (1 : Submodule O (FractionRing O)) (x i)
+  choose f hf using fun i ↦ Submodule.Quotient.mk_surjective
+    (1 : Submodule O (FractionRing O)) (x i)
   obtain ⟨a, ha⟩ := IsLocalization.exist_integer_multiples_of_finite (nonZeroDivisors O) f
   refine ⟨a, nonZeroDivisors.coe_ne_zero a, fun i ↦ ?_⟩
   rw [← hf i, ← Submodule.Quotient.mk_smul]
