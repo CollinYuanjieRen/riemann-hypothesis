@@ -127,7 +127,8 @@ lemma Orbital.exists_maxCompactU_of_blocks
     (g : ∀ τ : ℤˣ, Matrix {i : n // ε i = τ} {i : n // ε i = τ} ℂ)
     (h : ∀ τ : ℤˣ, (g τ)ᴴ * g τ = 1) :
     ∃ y : maxCompactU ε,
-      (y : Matrix n n ℂ) = reindex (Equiv.sigmaFiberEquiv ε) (Equiv.sigmaFiberEquiv ε) (blockDiagonal' g) ∧
+      (y : Matrix n n ℂ) = reindex (Equiv.sigmaFiberEquiv ε)
+        (Equiv.sigmaFiberEquiv ε) (blockDiagonal' g) ∧
         (y : Matrix n n ℂ).toSquareBlock ε = g := by
   let e : (Σ τ : ℤˣ, {i : n // ε i = τ}) ≃ n := Equiv.sigmaFiberEquiv ε
   let y : Matrix n n ℂ := reindex e e (blockDiagonal' g)
