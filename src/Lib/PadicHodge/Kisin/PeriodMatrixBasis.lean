@@ -924,6 +924,8 @@ lemma IsChartOf.exists_mulVec_extendToBPlus_eq_smul (hc : IsChartOf c 𝒥.toGp)
     simp [RingHom.map_mulVec, ← coe_inj _ BdR, mul_assoc, comp_def,
       ← IsScalarTower.algebraMap_apply]
     simp [hU_dR, hM_dR, ← mul_assoc, hodgeMatrix, smul_mulVec]
+    -- Both sides have the outer factor (E τ)^a W. Commute the diagonal factors on the left,
+    -- then use h_rows to identify the two vectors.
     have h_diag : (diagonal fun j ↦ algebraMap BdRPlus BdR (s j) * (tUnit : BdR) ^ k j) =
         (diagonal fun j ↦ (tUnit : BdR) ^ k j) * diagonal fun j ↦ algebraMap BdRPlus BdR (s j) := by
       rw [diagonal_mul_diagonal]
