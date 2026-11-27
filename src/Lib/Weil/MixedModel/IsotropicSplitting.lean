@@ -580,15 +580,18 @@ coordinates. -/
 abbrev ActsOnFrame (g : G E s) (c : Matrix p p (𝔸 E)) : Prop :=
   g.adeleMatrix * D.kAdelic = D.kAdelic * c
 
-/-- If a group element acts on the frame by an invertible matrix, its inverse acts by the inverse matrix. -/
+/-- If a group element acts on the frame by an invertible matrix, its inverse acts by the
+inverse matrix. -/
 lemma ActsOnFrame.inv {a : GL p (𝔸 E)} (hk : D.ActsOnFrame g a.val) :
     D.ActsOnFrame g⁻¹ a⁻¹.val := by
   calc g⁻¹.adeleMatrix * D.kAdelic
       = g⁻¹.adeleMatrix * (D.kAdelic * a.val) * a⁻¹.val := by simp [Matrix.mul_assoc]
     _ = D.kAdelic * a⁻¹.val := by
-      rw [← hk, ← Matrix.mul_assoc, ← G.adeleMatrix_mul, inv_mul_cancel, G.adeleMatrix_one, Matrix.one_mul]
+      rw [← hk, ← Matrix.mul_assoc, ← G.adeleMatrix_mul, inv_mul_cancel,
+        G.adeleMatrix_one, Matrix.one_mul]
 
-/-- Taking adjoints of the action on the frame gives the action of the inverse on its dual coordinate. -/
+/-- Taking adjoints of the action on the frame gives the action of the inverse on its dual
+coordinate. -/
 lemma lCoord_mul_inv_adeleMatrix (hk : D.ActsOnFrame g a) :
     D.lCoord * g⁻¹.adeleMatrix = aᴴ * D.lCoord := by
   simpa [lCoord, adeleMatrix_inv, Matrix.mul_assoc] using

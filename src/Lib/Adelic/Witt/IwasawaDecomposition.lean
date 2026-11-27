@@ -453,8 +453,8 @@ lemma exists_eq_radicalElement_mul_levi_mul_isAdapted {E n n₀ p : Type} [Field
   obtain ⟨κ, hκ, a, -, ha⟩ := H.exists_mem_maxCompact_actsOnFrame g (wt := 0)
   obtain ⟨κ₁, hκ₁, a₁, -, ha₁⟩ := H.exists_mem_maxCompact_actsOnFrame h₁ (wt := 0)
   have h_parabolic : H.ActsOnFrame (g * κ * (h₁ * κ₁)⁻¹) (a.val * a₁⁻¹.val) := by
-    rw [ActsOnFrame, G.adeleMatrix_mul, Matrix.mul_assoc, ActsOnFrame.inv H ha₁, ← Matrix.mul_assoc, ha,
-      Matrix.mul_assoc]
+    rw [ActsOnFrame, G.adeleMatrix_mul, Matrix.mul_assoc, ActsOnFrame.inv H ha₁,
+      ← Matrix.mul_assoc, ha, Matrix.mul_assoc]
   obtain ⟨c, b, t, g₀, h_eq : g * κ * (h₁ * κ₁)⁻¹ = H.radicalElement c b * H.levi (t, g₀), -⟩ :=
     H.exists_eq_radicalElement_mul_levi h_parabolic
   refine ⟨c, b, t, g₀, h₁ * (κ₁ * κ⁻¹),
