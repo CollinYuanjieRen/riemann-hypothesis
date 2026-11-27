@@ -345,11 +345,8 @@ seal Finset.sum in
 /-- The matrix of `g` on forms for the Frobenius cycle `T.map φ`, obtained from `T` along the ring
 map `φ : R →+* R'`, is the entrywise image under `φ` of the matrix of `g` for `T`. -/
 lemma letterRep_map : (T.map φ).letterRep n g = (T.letterRep n g).map φ := by
-  have h_letterMatrix_map (s : ZMod N) :
-      (T.map φ).letterMatrix s g = (T.letterMatrix s g).map φ := rfl
-  ext β α
-  simp [h_letterMatrix_map, letterRep, kroneckerPi, symPowMatrix, linSubst, smul_eq_C_mul,
-    map_aeval_eq_aeval_map_map, -map_aeval, ← coeff_map]
+  simp only [letterRep_apply, ← kroneckerPi_map, ← symPowMatrix_map]
+  rfl
 
 @[simp]
 lemma one_add_val_sub_one_sub : 1 + (s - 1 - i).val = if s = i then N else (s - i).val := by
