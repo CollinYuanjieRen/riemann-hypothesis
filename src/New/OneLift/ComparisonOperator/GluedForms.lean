@@ -217,7 +217,8 @@ lemma liftFn_datum_point_inv_mul (x : n × r → 𝔸f E) :
     rfl
   have h_sum_val (hx) (i : n) (j : r) :
       (((L.integralInverse * X hx) i j : Ô E) : 𝔸f E) =
-        O.genIdele.val * (idem (O.levelModulus 2).places * (L.point⁻¹.val.val * vecToMatrix x) i j) := by
+        O.genIdele.val *
+          (idem (O.levelModulus 2).places * (L.point⁻¹.val.val * vecToMatrix x) i j) := by
     change ((L.integralInverse * X hx).map (Ô E).subtype) i j = _
     rw [Matrix.map_mul]
     change ((O.genIdele.val • L.point⁻¹.val.val) *
