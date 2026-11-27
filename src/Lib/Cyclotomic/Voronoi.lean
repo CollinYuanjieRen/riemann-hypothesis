@@ -321,14 +321,11 @@ lemma exists_isStickelbergerBound (he : e ≠ 0) :
       ring
     obtain ⟨x, hx_mem, hx_eq⟩ := TauCeti.exists_mem_adjoin_bernoulliGroupDet_eq (M := N)
       (k := e + 1) (by omega) (χ.ringHomComp ι) hχ_K
-    have hx_range : x ∈ ι.range := by
+    obtain ⟨u₀, hu₀⟩ : x ∈ ι.range := by
       let : Algebra ℤ K := Ring.toIntAlgebra K
-      refine Algebra.adjoin_induction ?_ (fun r ↦ ⟨r, map_intCast ι r⟩)
-        (fun _ _ _ _ ha hb ↦ ι.range.add_mem ha hb)
-        (fun _ _ _ _ ha hb ↦ ι.range.mul_mem ha hb) hx_mem
+      refine Algebra.adjoin_le (S := ι.toIntAlgHom.range) ?_ hx_mem
       rintro _ ⟨a, rfl⟩
       exact ⟨χ a, rfl⟩
-    obtain ⟨u₀, hu₀⟩ := hx_range
     have h_sum_dvd : ∑ a : ZMod N, χ a * b a.val ∣
         (q * TauCeti.bernoulliGroupDet N (e + 1) : O) := by
       refine ⟨u₀, hι_inj ?_⟩
@@ -344,22 +341,13 @@ lemma exists_isStickelbergerBound (he : e ≠ 0) :
           ((TauCeti.bernoulliGroupDet N (e + 1)).natAbs : O) := by
         simpa only [eq_intCast, Int.cast_natCast] using
           map_dvd (Int.castRingHom O) (Int.dvd_natAbs.2 dvd_rfl)
-      have h_Y : 2 * ((q : O) * (TauCeti.bernoulliGroupDet N (e + 1) : O)) ∣ (Y : O) := by
-        dsimp only [Y]
-        push_cast
-        rw [mul_assoc]
-        exact mul_dvd_mul_left 2 (mul_dvd_mul_left (q : O) h_abs)
-      refine h_Y.trans ?_
-      dsimp only [X]
+      dsimp only [X, Y]
       push_cast
-      exact ⟨((1 + N) ^ e - 1 : ℕ) * ((1 + N) ^ (e + 1) - 1 : ℕ) *
-        (((1 + N + N) ^ e - 1 : ℕ) * ((1 + N + N) ^ (e + 1) - 1 : ℕ)), by ring⟩
+      refine dvd_trans ?_ ((dvd_mul_left _ _).trans (dvd_mul_left _ _))
+      simpa only [mul_assoc] using mul_dvd_mul_left 2 (mul_dvd_mul_left (q : O) h_abs)
     obtain ⟨u, hu⟩ := h_dvd_X
     refine ⟨u * ((e + 2)! * (e + 1) * N * c ^ e), fun m _ hm ↦ ?_⟩
-    obtain ⟨v, hv⟩ : (m : O) ∣
-        (e + 2)! * (e + 1) * N * c ^ e * ∑ a ∈ range (N * m), ↑(c * a / (N * m)) * (a ^ e * χ a) -
-          (c ^ (e + 1) - 1) * ∑ a : ZMod N, χ a * b a.val :=
-      voronoi_congruence_bernoulli N e χ hm hc_mod b hb_rat
+    obtain ⟨v, hv⟩ := voronoi_congruence_bernoulli N e χ hm hc_mod b hb_rat
     refine ⟨-2 * u * v, ?_⟩
     rw [hu]
     linear_combination -2 * u * hv
