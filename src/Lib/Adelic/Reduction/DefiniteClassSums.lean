@@ -393,7 +393,8 @@ lemma integral_quotMeasure_eq_classIntegral {V : Space E n 1} {F : G E (1 : n �
     (K : Subgroup (Gf E n)) [hK : IsLevel K] (hf : IsOpen (rightStabilizer f : Set (Gf E n)))
     (h_cont : Continuous F) :
     ∫ g, F g ∂V.quotMeasure = (stdLevelIndex K : W)⁻¹ * classIntegral V.Γf K f := by
-  -- At the level fixing `f` inside `K`, the class-sum formula applies. Indices multiply in the tower.
+  -- At the level fixing `f` inside `K`, the class-sum formula applies.
+  -- Indices multiply in the tower: [stdLevel : S] = [K : S] * [stdLevel : K].
   let S := rightStabilizer f ⊓ K
   have : IsLevel S := ⟨inf_le_of_right_le hK.le, hf.inter hK.isOpen⟩
   have h_index : (stdLevelIndex S : W) = (rightStabilizer f).relIndex K * stdLevelIndex K := by
