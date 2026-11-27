@@ -713,8 +713,8 @@ abbrev isotropicFramePair : Matrix 𝔰.BesselIndex (Fin 𝔰.ϱ ⊕ Fin 𝔰.ϱ
 
 omit [StarRing R] in
 /-- On the Bessel frame the split form has only the last diagonal entry `-N`. -/
-lemma middleGram_submatrix_besselFrame (N : R) : (𝔰.middleGram N).splitGram.submatrix 𝔰.besselFrame 𝔰.besselFrame =
-    single 𝔰.top 𝔰.top (-N) := by
+lemma middleGram_submatrix_besselFrame (N : R) :
+    (𝔰.middleGram N).splitGram.submatrix 𝔰.besselFrame 𝔰.besselFrame = single 𝔰.top 𝔰.top (-N) := by
   ext a b
   cases a using lastCases <;> cases b using lastCases <;>
     simp [Shape.besselFrame, Shape.Form.splitGram, Shape.middleGram,

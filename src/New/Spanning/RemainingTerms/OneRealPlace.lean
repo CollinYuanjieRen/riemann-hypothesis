@@ -178,7 +178,8 @@ lemma RealPlace.volumeRatio_eq_norm_det (y : 𝔰.G₁) :
 /-- The form on the span of the frame is minus the squared modulus of the coefficient of `z`. -/
 lemma RealPlace.frameCols_J₁_gram :
     𝔰.frameColsᴴ * 𝔰.J₁ * 𝔰.frameCols = diagonal (Pi.single 𝔰.top (-1)) := by
-  rw [conjTranspose_inclMatrix_mul_mul_inclMatrix, middleGram_submatrix_besselFrame, diagonal_single]
+  rw [conjTranspose_inclMatrix_mul_mul_inclMatrix,
+    middleGram_submatrix_besselFrame, diagonal_single]
 
 /-- If the vector `frameCols x = γ frameCols x'` lies in the span of the frame `f` and in the span
 of `γ f`, then its products with the frame `γ f` are `(0, …, 0, -x' top)`. That is,

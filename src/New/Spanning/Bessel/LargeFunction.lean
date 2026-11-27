@@ -333,7 +333,8 @@ lemma IsPosition.exists_mul_eq_frameCols_and_besselLength_le (hP : IsPosition ε
     by_cases h : a = 𝔰.top ∧ b = 𝔰.top
     · obtain ⟨rfl, rfl⟩ := h
       simpa using h_norm
-    · simpa [Matrix.single_apply, eq_comm (a := 𝔰.top), h] using hP.gram_eq_zero a b (not_and_or.1 h)
+    · simpa [Matrix.single_apply, eq_comm (a := 𝔰.top), h]
+        using hP.gram_eq_zero a b (not_and_or.1 h)
   have h_gram : (p.matrix.val * fromCols i₀ v)ᴴ * 𝔰.J₁ * (p.matrix.val * fromCols i₀ v) =
       (fromCols 𝔰.definiteCols 𝔰.frameCols)ᴴ * 𝔰.J₁ * fromCols 𝔰.definiteCols 𝔰.frameCols := by
     rw [gram_mul, p.gram_eq]
