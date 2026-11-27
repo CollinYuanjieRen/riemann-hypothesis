@@ -485,7 +485,8 @@ lemma isCohomEquiv_tensorCoeff_gluing (c : PadicTest)
         change (sectionOfMaps _ (fun b ↦ pairProj b.down) x).app A
           ((gluing ψc).app A (ofTorus t')) =
           (sectionOfMaps pointOrTorus glueLinear x).app A (ofTorus t')
-        rw [gluing_ofTorus, map_sub, h_disc, h_disc, ofTorus, h_glue ⟨true⟩ t', G.map_comp, G.map_comp, h_GU, h_GU]
+        rw [gluing_ofTorus, map_sub, h_disc, h_disc, ofTorus, h_glue ⟨true⟩ t',
+          G.map_comp, G.map_comp, h_GU, h_GU]
         change G.map t' (U.map (L.map (discToTorus (-coeHom))) (U.map (pairProj false) x)) -
             G.map t' (U.map (L.map (discToTorus coeHom)) (U.map (pairProj true) x)) =
           G.map t' (U.map (pairProj false ≫ L.map (discToTorus (-coeHom)) -
