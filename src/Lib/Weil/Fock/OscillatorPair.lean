@@ -234,7 +234,8 @@ lemma fockMatrixCoeff_one_left (hd : ∀ i j : ι, d i ≠ d j → (u : Matrix �
     fockMatrixCoeff u 1 P =
       (principalMinor (u : Matrix ι ι ℂ) fun i : ι ↦ ε i = -1)⁻¹ *
         fockInner (polyVector ε 1) (polyVector ε P) := by
-  -- Induct on the polynomials where the vacuum functional after `u` agrees with its scalar multiple.
+  -- Induct on the polynomials where the vacuum functional after `u` agrees
+  -- with its scalar multiple.
   set c : ℂ := (principalMinor (u : Matrix ι ι ℂ) fun i : ι ↦ ε i = -1)⁻¹
   let L := (fockInner (polyVector ε 1)).toLinearMap
   let S := ((L.comp (realWeil u).toLinearMap).eqLocus (c • L)).comap (polyVector ε)
