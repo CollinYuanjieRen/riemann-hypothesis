@@ -674,7 +674,8 @@ lemma agreesWithStringMap_mul_iff {w : Matrix ι' ι (𝔸 E)} {γ : G E ε} (h�
   have of_mem {δ : G E ε'} (hδ : δ ∈ Y'.besselGroup) :
       Y.AgreesWithStringMap Y' (V'.ratCoordMatrix δ * (w * V.ratCoordMatrix γ)) := by
     intro b a ha hba
-    -- With target weights truncated below at zero, agreement says that `w - T` has nonnegative degree.
+    -- With target weights truncated below at zero, agreement says that
+    -- `w - T` has nonnegative degree.
     let d (b : ι') := max 0 (Y'.gradeOf b)
     have hw0 : HasDegreeGe d Y.gradeOf 0 (w - Y.stringMap Y') := by
       simpa [HasDegreeGe, d, max_lt_iff, and_imp, sub_eq_zero, AgreesWithStringMap] using hw
