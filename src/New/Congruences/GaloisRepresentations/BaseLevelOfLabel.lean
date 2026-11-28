@@ -500,7 +500,8 @@ noncomputable abbrev translationAtPlaces :
 
 open scoped Classical in
 /-- Translation at the chosen places agrees with full translation on elements supported there. -/
-lemma translationAtPlaces_apply_of_mem_supportedOn (k : Gf D.E n) (hk : k ∈ supportedOn n O.places) :
+lemma translationAtPlaces_apply_of_mem_supportedOn (k : Gf D.E n)
+    (hk : k ∈ supportedOn n O.places) :
     translationAtPlaces O k = (stdSpace D.E n).formTranslation (O.columnCount, O.detExp) k := by
   simp only [translationAtPlaces, MonoidHom.comp_apply, Set.coe_toFinset, Gf.componentOn_eq_self hk]
 
@@ -553,7 +554,8 @@ theorem IsFormOfType.isRepOfType_normalizedRep [Nonempty n] {ϑ : D.Twist}
       ZeroMemClass.coe_eq_zero] using hf.isEigenform.left
   refine Selmer.isRepOfType_normalizedRep h_lift hf.isEigenform h_att
     (fun v h_exc h_chosen ↦ ?_)
-    (hasProductLabel_of_tupleIdem_apply_ne_zero h_lift translationAtPlaces_apply_of_mem_supportedOn h_ne)
+    (hasProductLabel_of_tupleIdem_apply_ne_zero h_lift
+      translationAtPlaces_apply_of_mem_supportedOn h_ne)
   -- A place neither chosen nor exceptional avoids `S` and `O.places`, as does its conjugate.
   obtain ⟨hv, hv_star⟩ : v ∉ S ∪ O.places ∧ star v ∉ S ∪ O.places := by
     simpa only [Subtype.range_coe] using notMem_and_star_notMem_range_union_places h_lift hQ
