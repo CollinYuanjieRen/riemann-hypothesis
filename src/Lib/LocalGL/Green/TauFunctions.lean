@@ -169,7 +169,8 @@ def detChar : Hall k := fun c : SimClass k ↦ χ ((-1) ^ c.dim * c.charpoly.coe
 
 open Matrix in
 /-- The group of the invertible matrices `1 + v λ`, for a given row `λ = l` and all columns `v`. -/
-def hyperplaneGroup {k r : Type*} [Field k] [Fintype r] [DecidableEq r] (l : r → k) : Subgroup (GL r k) where
+def hyperplaneGroup {k r : Type*} [Field k] [Fintype r] [DecidableEq r]
+    (l : r → k) : Subgroup (GL r k) where
   carrier := {s : GL r k | ∃ v : r → k, s.val = 1 + vecMulVec v l}
   one_mem' := ⟨0, by simp⟩
   mul_mem' := by
