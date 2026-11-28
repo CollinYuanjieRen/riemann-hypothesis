@@ -356,7 +356,7 @@ lemma frameImage_ratToInf_mulVec_div (γ : S.G E) (v : InfinitePlace E) (x : Fin
     frameImage (S.ratToInf γ v).val.val *ᵥ (fun k ↦ Φ v (x k) / S.basisScale v (𝔰.besselFrame k)) =
       fun i ↦ Φ v ((frameImage γ *ᵥ x) i) / S.basisScale v i := by
   funext i
-  simp [mulVec, dotProduct, Finset.sum_div, -Fintype.sum_sum_type]
+  simp only [mulVec, dotProduct, submatrix_apply, id_eq, ratToInf_apply, map_sum, map_mul, sum_div]
   exact sum_congr rfl fun k _ ↦ by field_simp [basisScale_ne_zero]
 
 /-- The image of γ at v is the conjugate of Φ_v γ by the diagonal `S.basisScale v`, so applied to
